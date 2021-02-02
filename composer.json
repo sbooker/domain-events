@@ -1,0 +1,25 @@
+{
+  "name": "sbooker/domain-events",
+  "description": "Domain events",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ramsey/uuid": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sbooker\\DomainEvents\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\Sbooker\\DomainEvents\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0"
+  }
+}
