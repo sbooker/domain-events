@@ -4,6 +4,9 @@
 [![Software License][badge-license]][license]
 [![PHP Version][badge-php]][php]
 [![Total Downloads][badge-downloads]][downloads]
+[![Build Status](https://travis-ci.org/sbooker/domain-events.svg?branch=2.x)](https://travis-ci.org/sbooker/domain-events)
+[![codecov](https://codecov.io/gh/sbooker/domain-events/branch/2.x/graph/badge.svg?token=3uCI9t0M2Q)](https://codecov.io/gh/sbooker/domain-events)
+
 
 ## Installation
 Install via [Composer][composer]:
@@ -11,55 +14,22 @@ Install via [Composer][composer]:
 composer require sbooker/domain-events
 ```
 
-### Configuration
-in PHP
-```php
-<?php
-
-use Sbooker\DomainEvents\DomainEvent;
-use Sbooker\DomainEvents\Publisher;
-use Sbooker\DomainEvents\PublisherContainer;
-
-class ConcretePublisher implements Publisher
-{
-    public function publish(DomainEvent $event) : void
-    {
-        // do publish event    
-    } 
-}
-
-// ...
-
-PublisherContainer::instance()->setPublisher(new ConcretePublisher());
-
-// ...
-
-```
-in Symfony
-```yaml
-  Sbooker\DomainEvents\PublisherContainer:
-    class: Sbooker\DomainEvents\PublisherContainer
-    factory: [ Sbooker\DomainEvents\PublisherContainer, 'instance' ]
-    calls:
-      - method: setPublisher
-        arguments:
-          - '@ConcretePublisher'
-```
-
 ### Usage
+
 ```php
 <?php
 
 namespace Domain;
 
+use Sbooker\DomainEvents\DomainEntity;
 use Sbooker\DomainEvents\DomainEvent;
-use Sbooker\DomainEvents\EventPublisherContainer;
+use Sbooker\DomainEvents\DominEventCollector;
 
 class SomethingOccurred extends  DomainEvent {}
 
-class SomeAggregateRoot
+class SomeAggregateRoot implements DomainEntity
 {
-    use EventPublisherContainer;
+    use DominEventCollector;
     
     public function doSomethingOfDomainLogic()
     {
