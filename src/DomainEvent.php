@@ -13,7 +13,7 @@ abstract class DomainEvent
 
     private DateTimeImmutable $occurredAt;
 
-    private ?Actor $actor = null;
+    private ?Actor $actor;
 
     public function __construct(UuidInterface $entityId, ?Actor $actor = null)
     {
