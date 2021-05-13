@@ -23,13 +23,13 @@ namespace Domain;
 
 use Sbooker\DomainEvents\DomainEntity;
 use Sbooker\DomainEvents\DomainEvent;
-use Sbooker\DomainEvents\DominEventCollector;
+use Sbooker\DomainEvents\DomainEventCollector;
 
 class SomethingOccurred extends  DomainEvent {}
 
 class SomeAggregateRoot implements DomainEntity
 {
-    use DominEventCollector;
+    use DomainEventCollector;
     
     public function doSomethingOfDomainLogic()
     {

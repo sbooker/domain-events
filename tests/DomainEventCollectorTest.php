@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Sbooker\DomainEvents\DomainEntity;
 use Sbooker\DomainEvents\DomainEvent;
-use Sbooker\DomainEvents\DominEventCollector;
+use Sbooker\DomainEvents\DomainEventCollector;
 use Sbooker\DomainEvents\Publisher;
 
 final class DomainEventCollectorTest extends TestCase
@@ -50,7 +50,7 @@ final class DomainEventCollectorTest extends TestCase
 
 final class Entity implements DomainEntity
 {
-    use DominEventCollector;
+    use DomainEventCollector;
 
     private UuidInterface $id;
 

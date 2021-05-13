@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Sbooker\DomainEvents;
 
-trait DominEventCollector
+trait DomainEventCollector
 {
     /** @var array<DomainEvent> */
     private array $events;
