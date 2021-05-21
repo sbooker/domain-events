@@ -7,7 +7,7 @@ namespace Sbooker\DomainEvents;
 trait DomainEventCollector
 {
     /** @var array<DomainEvent> */
-    private array $events;
+    private array $events = [];
 
     /* final */ protected function publish(DomainEvent $event): void
     {
