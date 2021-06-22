@@ -40,7 +40,7 @@ class DomainEventTest extends TestCase
         $event = new TestEvent(Uuid::uuid4());
         $actor = new TestActor(Uuid::uuid4());
 
-        $event->setActor($actor);
+        $event->injectActor($actor);
 
         $this->assertEquals($actor, $event->getActor());
     }
@@ -49,10 +49,10 @@ class DomainEventTest extends TestCase
     {
         $event = new TestEvent(Uuid::uuid4());
         $actor = new TestActor(Uuid::uuid4());
-        $event->setActor($actor);
+        $event->injectActor($actor);
         $otherActor = new TestActor(Uuid::uuid4());
 
-        $event->setActor($otherActor);
+        $event->injectActor($otherActor);
 
         $this->assertEquals($actor, $event->getActor());
     }
@@ -63,7 +63,7 @@ class DomainEventTest extends TestCase
         $event = new TestEvent(Uuid::uuid4(), $actor);
         $otherActor = new TestActor(Uuid::uuid4());
 
-        $event->setActor($otherActor);
+        $event->injectActor($otherActor);
 
         $this->assertEquals($actor, $event->getActor());
     }

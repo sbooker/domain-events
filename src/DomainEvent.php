@@ -22,7 +22,7 @@ abstract class DomainEvent
         $this->actor = $actor;
     }
 
-    public function setActor(Actor $actor): void
+    public function injectActor(Actor $actor): void
     {
         if (null !== $this->getActor()) {
             return;

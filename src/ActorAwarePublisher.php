@@ -20,7 +20,7 @@ final class ActorAwarePublisher implements Publisher
     {
         $actor = $this->actorStorage->getCurrentActor();
         if (null !== $actor) {
-            $event->setActor($actor);
+            $event->injectActor($actor);
         }
 
         $this->publisher->publish($event);
