@@ -15,7 +15,7 @@ composer require sbooker/domain-events
 ```
 
 ### Usage
-
+#### Publish events
 ```php
 <?php
 
@@ -35,6 +35,42 @@ class SomeAggregateRoot implements DomainEntity
     {
         // do
         $this->publish(new SomethingOccurred());
+    }
+}
+```
+#### Dispatch events
+For dispatching events use Sbooker\Domain\Events\Publihser implementation
+```php
+class SomeAggregateRoot implements DomainEntity
+{
+    use DomainEventCollector;
+    
+    ...
+}
+
+$publisher = new class implements Publihser { ... }
+
+$aggregateRoot = new SomeAggregateRoot();
+$aggregateRoot->dispatchEvents($publisher)
+
+```
+In more complex cases where Aggregate Root has one or more Domain Entities 
+you must override _DomainEventCollector::dispatchEvents_ as shown bellow:
+```php
+class Entity implements DomainEntity { ... }
+
+class SomeAggregateRoot implements DomainEntity
+{
+    use DomainEventCollector { dispatchEvents as doDispatchEvents; }
+    
+    private Entity $entity;
+   
+    ...
+    
+    public function dispatchEvents(Publisher $publisher): void
+    {
+        $this->doDispatchEvents($publisher);
+        $this->entity->dispatchEvents($publisher);
     }
 }
 ```
